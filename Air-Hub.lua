@@ -1,87 +1,85 @@
-debugX = true
-
+-- Air Hub by Airzer
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Air Hub - Dead Rails & Universais",
-   LoadingTitle = "Carregando Air Hub",
-   LoadingSubtitle = "Interface por Rayfield",
-   Theme = "Default",
+   Name = "Air Hub | Discord: Diego_144",
+   LoadingTitle = "Air Hub: Made by Diego_144",
+   LoadingSubtitle = "Made by Airzero",
    ConfigurationSaving = {
       Enabled = true,
-      FolderName = "AirHubData",
-      FileName = "AirHubConfig"
+      FolderName = nil,
+      FileName = "AirHub"
    },
    Discord = {
       Enabled = false,
-      Invite = "seuconvite",
+      Invite = "noinvitelink",
       RememberJoins = true
    },
    KeySystem = false
 })
 
--- ABA: Dead Rails
-local DeadRails = Window:CreateTab("Dead Rails", 4483362458)
+-- Dead Rails Tab
+local DeadRailsTab = Window:CreateTab("Dead Rails", 4483362458)
 
-DeadRails:CreateButton({
+DeadRailsTab:CreateButton({
    Name = "Skull Hub",
    Callback = function()
       loadstring(game:HttpGet('https://skullhub.xyz/loader.lua'))()
-   end
+   end,
 })
 
-DeadRails:CreateButton({
+DeadRailsTab:CreateButton({
    Name = "Null Fire",
    Callback = function()
       loadstring(game:HttpGet("https://rawscripts.net/raw/Dead-Rails-Alpha-NullFire-32921"))()
-   end
+   end,
 })
 
-DeadRails:CreateButton({
-   Name = "Tp To POI's",
+DeadRailsTab:CreateButton({
+   Name = "Tp to POIs",
    Callback = function()
       loadstring(game:HttpGet("https://raw.githubusercontent.com/JonasThePogi/DeadRails/refs/heads/main/newloadstring"))();
-   end
+   end,
 })
 
-DeadRails:CreateButton({
-   Name = "Tp To End (Tora)",
+DeadRailsTab:CreateButton({
+   Name = "Tp to End (Tora)",
    Callback = function()
       loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/refs/heads/main/DeadRails"))()
-   end
+   end,
 })
 
-DeadRails:CreateButton({
-   Name = "Air Weld (press Y)",
+DeadRailsTab:CreateButton({
+   Name = "Air Weld (Press Y)",
    Callback = function()
       _G.key = "Y"
       _G.MobileButton = false
       loadstring(game:HttpGet("https://raw.githubusercontent.com/Beru1337/DeadRails/refs/heads/main/betterweld.lua"))()
-   end
+   end,
 })
 
--- ABA: Universal
-local Universal = Window:CreateTab("Universal", 4483362458)
+-- Universal Tab
+local UniversalTab = Window:CreateTab("Universal", 4483362458)
 
-Universal:CreateButton({
-   Name = "Vfly",
+UniversalTab:CreateButton({
+   Name = "VFly",
    Callback = function()
       loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Vehicle%20Fly%20Gui'))()
-   end
+   end,
 })
 
-Universal:CreateButton({
+UniversalTab:CreateButton({
    Name = "Aimbot Head",
    Callback = function()
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/Airzer000/Roblox-Ui-Test/refs/heads/main/Aimbot-Head.lua"))()
-   end
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Airzer000/Air-Hub/refs/heads/main/Aimbot-Head.lua"))()
+   end,
 })
 
-Universal:CreateButton({
+UniversalTab:CreateButton({
    Name = "Aimbot Torso",
    Callback = function()
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/Airzer000/Roblox-Ui-Test/refs/heads/main/Aimbot-Torso.lua"))()
-   end
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Airzer000/Air-Hub/refs/heads/main/Aimbot-Torso.lua"))()
+   end,
 })
 
 Rayfield:LoadConfiguration()

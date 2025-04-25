@@ -3,91 +3,85 @@ debugX = true
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Air Hub By: Diego_144 (Discord)",
-   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-   LoadingTitle = "Airhub is Loading",
-   LoadingSubtitle = "by Diego_144",
-   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
-
-   DisableRayfieldPrompts = false,
-   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
-
+   Name = "Air Hub - Dead Rails & Universais",
+   LoadingTitle = "Carregando Air Hub",
+   LoadingSubtitle = "Interface por Rayfield",
+   Theme = "Default",
    ConfigurationSaving = {
       Enabled = true,
-      FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "Big Hub"
+      FolderName = "AirHubData",
+      FileName = "AirHubConfig"
    },
-
    Discord = {
-      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
-      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
-      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+      Enabled = false,
+      Invite = "seuconvite",
+      RememberJoins = true
    },
-
-   KeySystem = false, -- Set this to true to use our key system
-   KeySettings = {
-      Title = "Untitled",
-      Subtitle = "Key System",
-      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
-      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
-      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
-   }
+   KeySystem = false
 })
 
-local DeadRailsTab = Window:CreateTab("Dead Rails", 4483362458) -- Title, Image
+-- ABA: Dead Rails
+local DeadRails = Window:CreateTab("Dead Rails", 4483362458)
 
--- Scripts for Dead Rails Tab
-
-local AirWeldButton = DeadRailsTab:CreateButton({
-   Name = "Air Weld (press Y)",
-   Callback = function()
-      -- Better Weld v1.0 - Made By Beru
-      _G.key = "Y" -- Change key if you have some issue
-      _G.MobileButton = false -- Activate/Desactivate Mobile Button
-
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/Beru1337/DeadRails/refs/heads/main/betterweld.lua"))()
-   end,
-})
-
-local SkullHubButton = DeadRailsTab:CreateButton({
+DeadRails:CreateButton({
    Name = "Skull Hub",
    Callback = function()
       loadstring(game:HttpGet('https://skullhub.xyz/loader.lua'))()
-   end,
+   end
 })
 
-local NullFireButton = DeadRailsTab:CreateButton({
+DeadRails:CreateButton({
    Name = "Null Fire",
    Callback = function()
       loadstring(game:HttpGet("https://rawscripts.net/raw/Dead-Rails-Alpha-NullFire-32921"))()
-   end,
+   end
 })
 
-local TpToPOIsButton = DeadRailsTab:CreateButton({
+DeadRails:CreateButton({
    Name = "Tp To POI's",
    Callback = function()
-      loadstring(game:HttpGet("https://raw.githubusercontent.com/JonasThePogi/DeadRails/refs/heads/main/newloadstring"))()
-   end,
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/JonasThePogi/DeadRails/refs/heads/main/newloadstring"))();
+   end
 })
 
-local TpToEndButton = DeadRailsTab:CreateButton({
-   Name = "Tp to end (Tora)",
+DeadRails:CreateButton({
+   Name = "Tp To End (Tora)",
    Callback = function()
       loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/refs/heads/main/DeadRails"))()
-   end,
+   end
 })
 
--- Universal Tab with Vfly Script
+DeadRails:CreateButton({
+   Name = "Air Weld (press Y)",
+   Callback = function()
+      _G.key = "Y"
+      _G.MobileButton = false
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Beru1337/DeadRails/refs/heads/main/betterweld.lua"))()
+   end
+})
 
-local UniversalTab = Window:CreateTab("Universal", 4483362458) -- Title, Image
+-- ABA: Universal
+local Universal = Window:CreateTab("Universal", 4483362458)
 
-local VflyButton = UniversalTab:CreateButton({
+Universal:CreateButton({
    Name = "Vfly",
    Callback = function()
       loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Vehicle%20Fly%20Gui'))()
-   end,
+   end
+})
+
+Universal:CreateButton({
+   Name = "Aimbot Head",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Airzer000/Roblox-Ui-Test/refs/heads/main/Aimbot-Head.lua"))()
+   end
+})
+
+Universal:CreateButton({
+   Name = "Aimbot Torso",
+   Callback = function()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Airzer000/Roblox-Ui-Test/refs/heads/main/Aimbot-Torso.lua"))()
+   end
 })
 
 Rayfield:LoadConfiguration()

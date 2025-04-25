@@ -3,10 +3,10 @@ debugX = true
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Rayfield Example Window",
+   Name = "Air Hub By: Diego_144 (Discord)",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-   LoadingTitle = "Airhub",
-   LoadingSubtitle = "by (Discord) Diego_144",
+   LoadingTitle = "Airhub is Loading",
+   LoadingSubtitle = "by Diego_144",
    Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
 
    DisableRayfieldPrompts = false,
@@ -81,7 +81,7 @@ local TpToEndButton = DeadRailsTab:CreateButton({
 
 -- Universal Tab with Vfly Script
 
-local UniversalTab = Window:CreateTab("Universal", 4483362459) -- Title, Image
+local UniversalTab = Window:CreateTab("Universal", 4483362458) -- Title, Image
 
 local VflyButton = UniversalTab:CreateButton({
    Name = "Vfly",

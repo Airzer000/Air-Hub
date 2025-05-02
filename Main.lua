@@ -224,6 +224,16 @@ BloxFruits:CreateButton({
 local Universal = Window:CreateTab("Universal", 4483362458)
 
 Universal:CreateButton({
+    Name = "V Fly",
+    Callback = function()
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Vehicle%20Fly%20Gui'))()
+    end
+})
+
+local Universal = Window:CreateTab("Universal", 4483362458)
+
+Universal:CreateButton({
     Name = "Infinite Yield",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()

@@ -1,3 +1,6 @@
+-- Initial Configurations
+local debugX = true
+
 local smoothness = 0.2
 local fov = 40
 local maxDistance = 400
@@ -9,12 +12,14 @@ local aimbotEnabled = false
 local fovCircleEnabled = false
 local chamsColor = Color3.fromRGB(170, 0, 255)
 
+-- Services
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 local Cam = workspace.CurrentCamera
 
+-- FOV Drawing
 local FOVring = Drawing.new("Circle")
 FOVring.Visible = false
 FOVring.Thickness = 2
@@ -23,6 +28,7 @@ FOVring.Filled = false
 FOVring.Radius = fov
 FOVring.Position = Cam.ViewportSize / 2
 
+-- Utility Functions
 local function lerp(a, b, t)
     return a + (b - a) * t
 end
@@ -53,12 +59,16 @@ end
 
 local function isPlayerVisibleThroughWalls(player, trg_part)
     if not wallCheck then return true end
+
     local localChar = Players.LocalPlayer.Character
     if not localChar then return false end
+
     local part = player.Character and player.Character:FindFirstChild(trg_part)
     if not part then return false end
+
     local ray = Ray.new(Cam.CFrame.Position, (part.Position - Cam.CFrame.Position))
     local hit = workspace:FindPartOnRayWithIgnoreList(ray, {localChar})
+
     return hit and hit:IsDescendantOf(player.Character)
 end
 
@@ -68,12 +78,14 @@ local function getClosestPlayerInFOV(trg_part)
     local last = math.huge
     local playerMousePos = Cam.ViewportSize / 2
     local localPlayer = Players.LocalPlayer
+
     for _, player in ipairs(Players:GetPlayers()) do
         if player ~= localPlayer and (not teamCheck or player.Team ~= localPlayer.Team) and isPlayerAlive(player) then
             local part = player.Character and player.Character:FindFirstChild(trg_part)
             if part then
                 local ePos, visible = Cam:WorldToViewportPoint(part.Position)
                 local distance = (Vector2.new(ePos.X, ePos.Y) - playerMousePos).Magnitude
+
                 if distance < last and visible and distance < fov and distance < maxDistance and isPlayerVisibleThroughWalls(player, trg_part) then
                     last = distance
                     nearest = player
@@ -81,11 +93,13 @@ local function getClosestPlayerInFOV(trg_part)
             end
         end
     end
+
     return nearest
 end
 
 local function applyChams(player)
     if player == Players.LocalPlayer or not player.Character then return end
+
     for _, part in ipairs(player.Character:GetChildren()) do
         if part:IsA("BasePart") then
             local existing = part:FindFirstChild("ChamHighlight")
@@ -107,6 +121,7 @@ local function applyChams(player)
     end
 end
 
+-- Update all chams dynamically
 local function updateAllChams()
     for _, player in ipairs(Players:GetPlayers()) do
         if player ~= Players.LocalPlayer then
@@ -115,6 +130,7 @@ local function updateAllChams()
     end
 end
 
+-- Player events
 Players.PlayerAdded:Connect(function(player)
     player.CharacterAdded:Connect(function()
         task.wait(1)
@@ -130,15 +146,18 @@ for _, player in ipairs(Players:GetPlayers()) do
     applyChams(player)
 end
 
+-- Delete key removes FOV circle
 UserInputService.InputBegan:Connect(function(input)
     if input.KeyCode == Enum.KeyCode.Delete then
         FOVring:Remove()
     end
 end)
 
+-- Main loop
 RunService.RenderStepped:Connect(function()
     updateDrawings()
     updateAllChams()
+
     if aimbotEnabled then
         local target = getClosestPlayerInFOV(aimPart)
         if target and target.Character and target.Character:FindFirstChild(aimPart) then
@@ -147,22 +166,26 @@ RunService.RenderStepped:Connect(function()
     end
 end)
 
+-- GUI
 local Window = Rayfield:CreateWindow({
-   Name = "Air Hub - Aimbot",
-   LoadingTitle = "Loading Air Hub",
-   LoadingSubtitle = "Interface by Rayfield",
-   Theme = "Default",
-   ConfigurationSaving = {
-      Enabled = true,
-      FolderName = "AirHubData",
-      FileName = "AimbotOnly"
-   },
-   Discord = {
-      Enabled = false
-   },
-   KeySystem = false
+    Name = "Air Hub - Dead Rails, Universal & Aimbot",
+    LoadingTitle = "Loading Air Hub",
+    LoadingSubtitle = "Interface by Rayfield",
+    Theme = "Default",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = "AirHubData",
+        FileName = "AirHubConfig"
+    },
+    Discord = {
+        Enabled = false,
+        Invite = "seuconvite",
+        RememberJoins = true
+    },
+    KeySystem = false
 })
 
+-- Aimbot Tab
 local AimbotTab = Window:CreateTab("Aimbot", 4483362458)
 
 AimbotTab:CreateToggle({
@@ -179,7 +202,7 @@ AimbotTab:CreateToggle({
 })
 
 AimbotTab:CreateToggle({
-    Name = "FOV Circle",
+    Name = "Show FOV Circle",
     CurrentValue = false,
     Callback = function(state)
         fovCircleEnabled = state

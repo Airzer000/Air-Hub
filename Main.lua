@@ -1,4 +1,4 @@
--- Initial Configurations
+se-- Initial Configurations
 local debugX = true
 
 local smoothness = 0.2
@@ -230,8 +230,6 @@ Universal:CreateButton({
 loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Vehicle%20Fly%20Gui'))()
     end
 })
-
-local Universal = Window:CreateTab("Universal", 4483362458)
 
 Universal:CreateButton({
     Name = "Infinite Yield",

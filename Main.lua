@@ -1,4 +1,4 @@
--- Initial Configurations
+-- Initial Configurations 
 local debugX = true
 
 local smoothness = 0.2

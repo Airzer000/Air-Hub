@@ -1,3 +1,2 @@
 # Air Hub
-Aimbot but legit
-(dead rails W.I.P)
+Scripts for some games

